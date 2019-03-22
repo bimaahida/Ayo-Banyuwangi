@@ -13,8 +13,6 @@ Isun Banyuwangi can give any information about Banyuwangi like tourism , art eve
 Isun Banyuwangi can give a geographic information in a map to make it easier for tourist to reach the destination. 
 Isun Banyuwangi can help UMKM in Banyuwangi active to compete the 4.0 industry revolution with promote and manage the product and increase sales effectively
 
-<https://codeigniter.com/download>`_ page.
-
 **************************
 How I built it
 **************************
@@ -26,11 +24,8 @@ to be displayed on the website and using google maps technology as a medium to s
 *******************
 Challenges I ran into
 *******************
-1. There is a need for activeness from UMKM to keep updating the product so that the content is always fresh and interesting
-2  The biggest challenge we faced is when determining the closest tourist location with the best rating. 
-   Some locations that offer local products are also a challenge because we have to contact owners of local product in the form of snacks, heavy meals and drinks. 
-   This is a very interesting challenge because by highlighting features like this, the tourists who come to Banyuwangi can find out their destination without having 
-   to be confused looking for a place to sell typical Banyuwangi food or natural attractions that only exist in Banyuwangi.
+- There is a need for activeness from UMKM to keep updating the product so that the content is always fresh and interesting
+- The biggest challenge we faced is when determining the closest tourist location with the best rating. Some locations that offer local products are also a challenge because we have to contact owners of local product in the form of snacks, heavy meals and drinks. This is a very interesting challenge because by highlighting features like this, the tourists who come to Banyuwangi can find out their destination without having to be confused looking for a place to sell typical Banyuwangi food or natural attractions that only exist in Banyuwangi.
 
 ************
 What I learned
@@ -64,7 +59,7 @@ Resources
 The team
 ***************
 
-- Bima Ahida Indaka Sugna <https://github.com/bimaahida>`_
-- Johan Bagaskara <https://github.com/johan>`_
-- Rakha Hidayat <https://github.com/rakha>`_
+- `Bima Ahida Indaka Sugna <https://github.com/bimaahida>`_
+- `Johan Bagaskara <https://github.com/johan>`_
+- `Rakha Hidayat <https://github.com/rakha>`_
 
