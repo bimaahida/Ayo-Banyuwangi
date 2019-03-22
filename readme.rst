@@ -60,6 +60,6 @@ The team
 ***************
 
 - `Bima Ahida Indaka Sugna <https://github.com/bimaahida>`_
-- `Johan Bagaskara <https://github.com/johan>`_
-- `Rakha Hidayat <https://github.com/rakha>`_
+- `Johan Bagaskara <https://github.com/johandbk>`_
+- `Rakha Hidayat <https://github.com/rakhahidayat23>`_
 
