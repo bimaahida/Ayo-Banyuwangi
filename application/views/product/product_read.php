@@ -9,7 +9,7 @@
                 <img src="<?php echo base_url().$image; ?>" class="img-responsive" alt="Image" style="height: auto;width: 50%;margin-left: 25%;">
                 
                 <h4 class="title"><?php echo $name; ?><br />
-                    <a href="#"><small><?php echo $price; ?></small></a>
+                    <small>Deskripsion</small>
                 </h4>
             </div>
             <p class="description text-center">
@@ -23,7 +23,7 @@
                     <h5><?php echo date('Y-m-d',strtotime($date)); ?><br /><small>Date Create</small></h5>
                 </div>
                 <div class="col-md-4">
-                    <h5><?php echo "Rp ".number_format($price,2,',','.'); ?><br /><small>Price Sell</small></h5>
+                    <h5><?php echo "Rp ".$price." ,00"; ?><br /><small>Price Sell</small></h5>
                 </div>
                 <div class="col-md-3">
                     <h5><?php echo $spotName; ?><br /><small>Store</small></h5>

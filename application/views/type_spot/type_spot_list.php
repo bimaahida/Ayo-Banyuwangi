@@ -46,6 +46,9 @@
                 <tr>
                     <th width="80px">No</th>
 		    <th>Name</th>
+		    <th>Title</th>
+		    <th>Description</th>
+		    <th>Image</th>
 		    <th width="200px">Action</th>
                 </tr>
             </thead>
@@ -90,7 +93,7 @@
                         {
                             "data": "id",
                             "orderable": false
-                        },{"data": "name"},
+                        },{"data": "name"},{"data": "title"},{"data": "description"},{"data": "image"},
                         {
                             "data" : "action",
                             "orderable": false,

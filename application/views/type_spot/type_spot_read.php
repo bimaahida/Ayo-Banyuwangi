@@ -13,6 +13,9 @@
         <h2 style="margin-top:0px">Type_spot Read</h2>
         <table class="table">
 	    <tr><td>Name</td><td><?php echo $name; ?></td></tr>
+	    <tr><td>Title</td><td><?php echo $title; ?></td></tr>
+	    <tr><td>Description</td><td><?php echo $description; ?></td></tr>
+	    <tr><td>Image</td><td><?php echo $image; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('type_spot') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
         </body>

@@ -44,6 +44,11 @@ class Spot_model extends CI_Model
         $this->db->where('user_id', $id);
         return $this->db->get($this->table)->result();
     }
+    function get_by_type($id)
+    {
+        $this->db->where('type_spot_id', $id);
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

@@ -151,7 +151,7 @@ class Product extends CI_Controller
             $this->update($this->input->post('id', TRUE));
         } else {
             $foto_lama = $this->input->post('foto_lama',TRUE);
-            if($this->upload->do_upload('image') == FALSE){
+            if ( !$this->upload->do_upload('image')){
                 $data = array(
                     'name' => $this->input->post('name',TRUE),
                     'description' => $this->input->post('description',TRUE),
@@ -160,20 +160,15 @@ class Product extends CI_Controller
                 );
             }else{
                 @unlink($foto_lama);
-
-                if ( !$this->upload->do_upload('image')){
-                    $error = array('error' => $this->upload->display_errors());
-                    var_dump($error);
-                }else{
-                    $file = 'assets/upload/product/'.$this->upload->data('file_name');
-                    $data = array(
-                        'name' => $this->input->post('name',TRUE),
-                        'image' => $file,
-                        'description' => $this->input->post('description',TRUE),
-                        'price' => $this->input->post('price',TRUE),
-                        'spot_id' => $this->input->post('spot_id',TRUE),
-                    );
-                }
+                $file = 'assets/upload/product/'.$this->upload->data('file_name');
+                $data = array(
+                    'name' => $this->input->post('name',TRUE),
+                    'image' => $file,
+                    'description' => $this->input->post('description',TRUE),
+                    'price' => $this->input->post('price',TRUE),
+                    'spot_id' => $this->input->post('spot_id',TRUE),
+                );
+                var_dump($data);
             }
 
             $this->Product_model->update($this->input->post('id', TRUE), $data);
@@ -187,6 +182,7 @@ class Product extends CI_Controller
         $row = $this->Product_model->get_by_id($id);
 
         if ($row) {
+            @unlink($row->image);
             $this->Product_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('product'));
