@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2019 at 08:22 PM
+-- Generation Time: Mar 23, 2019 at 09:07 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -74,7 +74,9 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `image`, `description`, `price`, `date`, `spot_id`) VALUES
-(1, 'test2', 'assets/upload/product/d4b0ef4e-475e-4d10-9d47-0217215754591.jpeg', 'Assign responsive-friendly margin or padding values to an element or a subset of its sides with shorthand classes. Includes support for individual properties, all properties, and vertical and horizontal properties. Classes are built from a default Sass map ranging from .25rem to 3rem.', '1235', '2019-03-23 01:13:58', 1);
+(1, 'test2', 'assets/upload/product/Capture.PNG', 'Assign responsive-friendly margin or padding values to an element or a subset of its sides with shorthand classes. Includes support for individual properties, all properties, and vertical and horizontal properties. Classes are built from a default Sass map ranging from .25rem to 3rem.', '1235', '2019-03-23 01:13:58', 1),
+(3, 'qweqwe', 'assets/upload/product/Capture1.PNG', 'asd', '3.0000', '2019-03-23 19:57:45', 1),
+(4, 'lul2', 'assets/upload/product/Capture2.PNG', 'Untuk memformat output data database ke dalam bentuk rupiah, kita gunakan program serverside, seperti PHP. Hal ini tidak efektif jika menggunakan program client side seperti javascript, karena harus menunggu semua dokumen di load.\r\n\r\nLalu, untuk tujuan apa membuat format rupiah dengan javascript?', '40.0000', '2019-03-23 20:03:50', 1);
 
 -- --------------------------------------------------------
 
@@ -90,6 +92,15 @@ CREATE TABLE `review` (
   `spot_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`id`, `review`, `date`, `rating`, `spot_id`, `user_id`) VALUES
+(1, 'sedang', '2019-03-24 00:35:02', 2, 2, 2),
+(2, 'bagus', '2019-03-24 00:35:02', 3, 2, 2),
+(3, 'Sangat bangus sekali', '2019-03-24 00:35:02', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -114,7 +125,8 @@ CREATE TABLE `spot` (
 --
 
 INSERT INTO `spot` (`id`, `name`, `image`, `description`, `latitude`, `longitude`, `date`, `type_spot_id`, `user_id`) VALUES
-(1, 'Store 1', 'assets/upload/profile/d4b0ef4e-475e-4d10-9d47-0217215754592.jpeg', 'Deskripsi', '-7.587871', '110.4443', '2019-03-23 00:51:24', 1, 1);
+(1, 'Store 1', 'assets/upload/profile/gunung.jpeg', 'Deskripsi', '-7.587871', '110.4443', '2019-03-23 00:51:24', 1, 1),
+(2, 'Test Data 2', 'assets/upload/profile/Puncak-Sejati-Gunung-Raung-Wisata-Gunung-Banyuwangi.jpg', 'Test Description', '-7.587871', '110.450197', '2019-03-24 00:33:41', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -143,16 +155,21 @@ INSERT INTO `type_gallery` (`id`, `name`) VALUES
 
 CREATE TABLE `type_spot` (
   `id` int(11) NOT NULL,
-  `name` varchar(45) COLLATE utf8_danish_ci DEFAULT NULL
+  `name` varchar(45) COLLATE utf8_danish_ci DEFAULT NULL,
+  `title` varchar(45) COLLATE utf8_danish_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8_danish_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8_danish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
 --
 -- Dumping data for table `type_spot`
 --
 
-INSERT INTO `type_spot` (`id`, `name`) VALUES
-(1, 'Wisata'),
-(2, 'UMKM');
+INSERT INTO `type_spot` (`id`, `name`, `title`, `description`, `image`) VALUES
+(1, 'Mountain', 'Mountain Nature Tourism', 'Mountain Nature Tourism with cool air to enjoy nature realistically', 'assets/user/img/peaks.png'),
+(2, 'Beach', 'Coastal Nature Tourism', 'Beach Nature with a breeze and the beauty of the sunset', 'assets/user/img/beach.png'),
+(3, 'Forest', 'Banyuwangi Rain Forest', 'Enjoy the natural beauty close to the Banyuwangi forest', 'assets/user/img/forest.png'),
+(4, 'Island', 'private island of Banyuwangi', 'Private island tourism with good facilities', 'assets/user/img/island.png');
 
 -- --------------------------------------------------------
 
@@ -258,17 +275,17 @@ ALTER TABLE `level_user`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `spot`
 --
 ALTER TABLE `spot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `type_gallery`
 --
@@ -278,7 +295,7 @@ ALTER TABLE `type_gallery`
 -- AUTO_INCREMENT for table `type_spot`
 --
 ALTER TABLE `type_spot`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user`
 --
