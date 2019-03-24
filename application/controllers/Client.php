@@ -18,7 +18,23 @@ class Client extends CI_Controller
     public function index()
     {
         $returnArray = array();
+        $spotList = array();
+        
         $type_spot = $this->Type_spot_model->get_all();
+        $spot = $this->Spot_model->get_all();
+
+        foreach ($spot as $keySpot) {
+            $tmpType = $this->Type_spot_model->get_by_id($keySpot->type_spot_id);
+            $tmpArray = array(
+                'name' => $keySpot->name, 
+                'image' => $keySpot->image, 
+                'description' => $keySpot->description, 
+                'latitude' => $keySpot->latitude, 
+                'longitude' => $keySpot->longitude, 
+                'type' => $tmpType->name, 
+            );
+            array_push($spotList,$tmpArray);
+        }
         foreach ($type_spot as $keyType) {
             $tmp = $this->getTopSpotByReview($keyType->id);
             $tmpArray = array(
@@ -35,6 +51,8 @@ class Client extends CI_Controller
         $data = array(
             'type_spot' => $returnArray,
         );
+        
+        $this->render['listMaps']= json_encode($spotList);
         $this->render['content']= $this->load->view('client_page/home', $data, TRUE);
         $this->load->view('templateClient', $this->render);
     }

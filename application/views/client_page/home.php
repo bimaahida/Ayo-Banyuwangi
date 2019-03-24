@@ -91,7 +91,7 @@
     <div class="tab-content clearfix">
         <!-- Tab 1 -->
         <?php $i = 1; foreach ($type_spot as $key) { ?>
-            <div class="tab-pane fade <?php if($i == 1){ echo 'show active';} ?>" id="<?= $i.'a'?>">
+            <div class="tab-pane fade <?php if($i == 4){ echo 'show active';} ?>" id="<?= $i.'a'?>">
                 <div class="tm-recommended-place-wrap">
                     <?php foreach ($key['listSpot'] as $keySpot){ ?>
                         <div class="tm-recommended-place">
@@ -117,19 +117,4 @@
 <!-- Maps -->
 <div class="tm-container-outer tm-position-relative" id="tm-section-4">
     <div id="google-map"></div>
-    <form action="index.html" method="post" class="tm-contact-form">
-        <div class="form-group tm-name-container">
-            <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Name"  required/>
-        </div>
-        <div class="form-group tm-email-container">
-            <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Email"  required/>
-        </div>
-        <div class="form-group">
-            <input type="text" id="contact_subject" name="contact_subject" class="form-control" placeholder="Subject"  required/>
-        </div>
-        <div class="form-group">
-            <textarea id="contact_message" name="contact_message" class="form-control" rows="9" placeholder="Message" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary tm-btn-primary tm-btn-send text-uppercase">Send Message Now</button>
-    </form>
 </div> <!-- .tm-container-outer -->

@@ -53,7 +53,7 @@ http://www.templatemo.com/tm-511-journey
                                     <a class="nav-link" href="#tm-section-3">Recommended Places</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#tm-section-4">Contact Us</a>
+                                    <a class="nav-link" href="#tm-section-4">Maps</a>
                                 </li>
                             </ul>
                         </div>                            
@@ -69,7 +69,7 @@ http://www.templatemo.com/tm-511-journey
             </footer>
         </div>
     </div> <!-- .main-content -->
-
+        <?php $tmp = $listMaps; ?>
     <!-- load JS files -->
     <script src= "<?= base_url()?>assets/user/js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
     <script src= "<?= base_url()?>assets/user/js/popper.min.js"></script>                    <!-- https://popper.js.org/ -->       
@@ -81,25 +81,72 @@ http://www.templatemo.com/tm-511-journey
     <script> 
         /* Google Maps
         ------------------------------------------------*/
+        var mapsList = JSON.parse('<?php echo $listMaps ?>');
+        
         var map = '';
         var center;
 
         function initialize() {
+            var marker, i
+
             var mapOptions = {
                 zoom: 16,
-                center: new google.maps.LatLng(37.769725, -122.462154),
-                scrollwheel: false
+                center: new google.maps.LatLng(-8.20731141166983,114.36764512289437),
+                scrollwheel: false,
             };
 
             map = new google.maps.Map(document.getElementById('google-map'),  mapOptions);
 
             google.maps.event.addDomListener(map, 'idle', function() {
-              calculateCenter();
-          });
+                calculateCenter();
+            });
 
             google.maps.event.addDomListener(window, 'resize', function() {
-              map.setCenter(center);
-          });
+                map.setCenter(center);
+            });
+            setMarkers(map,mapsList);
+
+            function setMarkers(map,locations){
+                for (i = 0; i < locations.length; i++){  
+                    var description = locations[i]['description']
+                    var image = locations[i]['image']
+                    var latitude = locations[i]['latitude']
+                    var longitude =  locations[i]['longitude']
+                    var name =  locations[i]['name']
+                    var type =  locations[i]['type']
+
+                    latlngset = new google.maps.LatLng(latitude, longitude);
+
+                    var marker = new google.maps.Marker({  
+                        map: map, title: name , position: latlngset  
+                    });
+                    map.setCenter(marker.getPosition())
+
+
+                    var content = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h4 id="firstHeading" class="firstHeading">'+name+'</h4>'+
+                    
+                    '<div id="bodyContent">'+
+                    '<img src="'+image+'" class="img-fluid img-thumbnail" alt="'+name+'" style="width: 400px;height: auto;">'+
+                    '<p>'+description+'</p>'+
+                    '<hr>'+
+                    '<p>Detail:<a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+name+'</a> '+
+                    '</p>'+
+                    '</div>'+
+                    '</div>';   
+
+                    var infowindow = new google.maps.InfoWindow()
+
+                    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                        return function() {
+                            infowindow.setContent(content);
+                            infowindow.open(map,marker);
+                        };
+                    })(marker,content,infowindow)); 
+                }
+            }
         }
 
         function calculateCenter() {
