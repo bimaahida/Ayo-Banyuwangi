@@ -123,19 +123,26 @@ http://www.templatemo.com/tm-511-journey
                     map.setCenter(marker.getPosition())
 
 
-                    var content = '<div id="content">'+
-                    '<div id="siteNotice">'+
-                    '</div>'+
-                    '<h4 id="firstHeading" class="firstHeading">'+name+'</h4>'+
-                    
-                    '<div id="bodyContent">'+
-                    '<img src="'+image+'" class="img-fluid img-thumbnail" alt="'+name+'" style="width: 400px;height: auto;">'+
-                    '<p>'+description+'</p>'+
-                    '<hr>'+
-                    '<p>Detail:<a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+name+'</a> '+
-                    '</p>'+
-                    '</div>'+
-                    '</div>';   
+                    var content = '<div class="container-fluid">'+
+                                '<div class="row">'+
+                                '<div class="col-md-12">'+
+                                '<h3 class="text-center">'+name+'</h3>'+
+                                '<hr>'+
+                                '<div class="row">'+
+                                '<div class="col-md-6">'+
+                                '<img src="'+image+'" class="img-fluid img-thumbnail" alt="'+name+'" style="width: 100%;height: auto;">'+
+                                '</div>'+
+                                '<div class="col-md-6">'+
+                                '<p>'+description+'</p>'+
+                                '</div>'+
+                                '</div>'+
+                                '<hr>'+
+                                '<h6>'+
+                                'Detail : <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+name+'</a>'+
+                                '</h6>'+
+                                '</div>'+
+                                '</div>'+
+                                '</div>';
 
                     var infowindow = new google.maps.InfoWindow()
 
