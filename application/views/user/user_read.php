@@ -12,10 +12,12 @@
     <body>
         <h2 style="margin-top:0px">User Read</h2>
         <table class="table">
+	    <tr><td>Name</td><td><?php echo $name; ?></td></tr>
 	    <tr><td>Username</td><td><?php echo $username; ?></td></tr>
 	    <tr><td>Password</td><td><?php echo $password; ?></td></tr>
 	    <tr><td>Email</td><td><?php echo $email; ?></td></tr>
 	    <tr><td>Phone</td><td><?php echo $phone; ?></td></tr>
+	    <tr><td>Image</td><td><?php echo $image; ?></td></tr>
 	    <tr><td>Date</td><td><?php echo $date; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('user') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>

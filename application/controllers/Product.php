@@ -95,6 +95,7 @@ class Product extends CI_Controller
                     'description' => $this->input->post('description',TRUE),
                     'price' => $this->input->post('price',TRUE),
                     'spot_id' => $this->input->post('spot_id',TRUE),
+                    'date' => date("Y-m-d H:i:s"),
                 );
     
 

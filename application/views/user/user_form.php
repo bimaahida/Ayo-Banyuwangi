@@ -13,6 +13,10 @@
         <h2 style="margin-top:0px">User <?php echo $button ?></h2>
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
+            <label for="varchar">Name <?php echo form_error('name') ?></label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php echo $name; ?>" />
+        </div>
+	    <div class="form-group">
             <label for="varchar">Username <?php echo form_error('username') ?></label>
             <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php echo $username; ?>" />
         </div>
@@ -27,6 +31,10 @@
 	    <div class="form-group">
             <label for="varchar">Phone <?php echo form_error('phone') ?></label>
             <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" value="<?php echo $phone; ?>" />
+        </div>
+	    <div class="form-group">
+            <label for="varchar">Image <?php echo form_error('image') ?></label>
+            <input type="text" class="form-control" name="image" id="image" placeholder="Image" value="<?php echo $image; ?>" />
         </div>
 	    <div class="form-group">
             <label for="datetime">Date <?php echo form_error('date') ?></label>

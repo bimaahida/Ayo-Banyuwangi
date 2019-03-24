@@ -47,6 +47,7 @@
                     <th width="80px">No</th>
 		    <th>Review</th>
 		    <th>Date</th>
+		    <th>Rating</th>
 		    <th>Spot Id</th>
 		    <th>User Id</th>
 		    <th width="200px">Action</th>
@@ -93,7 +94,7 @@
                         {
                             "data": "id",
                             "orderable": false
-                        },{"data": "review"},{"data": "date"},{"data": "spot_id"},{"data": "user_id"},
+                        },{"data": "review"},{"data": "date"},{"data": "rating"},{"data": "spot_id"},{"data": "user_id"},
                         {
                             "data" : "action",
                             "orderable": false,

@@ -21,6 +21,10 @@
             <input type="text" class="form-control" name="date" id="date" placeholder="Date" value="<?php echo $date; ?>" />
         </div>
 	    <div class="form-group">
+            <label for="int">Rating <?php echo form_error('rating') ?></label>
+            <input type="text" class="form-control" name="rating" id="rating" placeholder="Rating" value="<?php echo $rating; ?>" />
+        </div>
+	    <div class="form-group">
             <label for="int">Spot Id <?php echo form_error('spot_id') ?></label>
             <input type="text" class="form-control" name="spot_id" id="spot_id" placeholder="Spot Id" value="<?php echo $spot_id; ?>" />
         </div>

@@ -17,12 +17,12 @@
             <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php echo $name; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="image">Image <?php echo form_error('image') ?></label>
-            <textarea class="form-control" rows="3" name="image" id="image" placeholder="Image"><?php echo $image; ?></textarea>
+            <label for="varchar">Image <?php echo form_error('image') ?></label>
+            <input type="text" class="form-control" name="image" id="image" placeholder="Image" value="<?php echo $image; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Description <?php echo form_error('description') ?></label>
-            <input type="text" class="form-control" name="description" id="description" placeholder="Description" value="<?php echo $description; ?>" />
+            <label for="description">Description <?php echo form_error('description') ?></label>
+            <textarea class="form-control" rows="3" name="description" id="description" placeholder="Description"><?php echo $description; ?></textarea>
         </div>
 	    <div class="form-group">
             <label for="varchar">Latitude <?php echo form_error('latitude') ?></label>

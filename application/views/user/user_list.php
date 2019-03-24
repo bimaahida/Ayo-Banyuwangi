@@ -45,10 +45,12 @@
             <thead>
                 <tr>
                     <th width="80px">No</th>
+		    <th>Name</th>
 		    <th>Username</th>
 		    <th>Password</th>
 		    <th>Email</th>
 		    <th>Phone</th>
+		    <th>Image</th>
 		    <th>Date</th>
 		    <th width="200px">Action</th>
                 </tr>
@@ -94,7 +96,7 @@
                         {
                             "data": "id",
                             "orderable": false
-                        },{"data": "username"},{"data": "password"},{"data": "email"},{"data": "phone"},{"data": "date"},
+                        },{"data": "name"},{"data": "username"},{"data": "password"},{"data": "email"},{"data": "phone"},{"data": "image"},{"data": "date"},
                         {
                             "data" : "action",
                             "orderable": false,

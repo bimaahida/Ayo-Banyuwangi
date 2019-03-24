@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2019 at 09:07 PM
+-- Generation Time: Mar 24, 2019 at 08:00 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -125,8 +125,8 @@ CREATE TABLE `spot` (
 --
 
 INSERT INTO `spot` (`id`, `name`, `image`, `description`, `latitude`, `longitude`, `date`, `type_spot_id`, `user_id`) VALUES
-(1, 'Store 1', 'assets/upload/profile/gunung.jpeg', 'Deskripsi', '-7.587871', '110.4443', '2019-03-23 00:51:24', 1, 1),
-(2, 'Test Data 2', 'assets/upload/profile/Puncak-Sejati-Gunung-Raung-Wisata-Gunung-Banyuwangi.jpg', 'Test Description', '-7.587871', '110.450197', '2019-03-24 00:33:41', 1, 1);
+(1, 'Gunung Ijen', 'assets/upload/profile/gunung.jpeg', 'Gunung Ijen adalah sebuah gunung berapi aktif yang terletak di perbatasan antara Kabupaten Banyuwangi dan Kabupaten Bondowoso, Jawa Timur, Indonesia. Gunung ini memiliki ketinggian 2.443 mdpl dan terletak berdampingan dengan Gunung Merapi. Gunung Ijen terakhir meletus pada tahun 1999. Salah satu fenomena alam yang paling terkenal dari Gunung Ijen adalah kawah yang terletak di puncaknya. Pendakian gunung ini bisa dimulai dari beberapa tempat. Pendaki bisa berangkat dari Banyuwangi ataupun dari Bondowoso. ', '-7.587871', '110.4443', '2019-03-23 00:51:24', 1, 1),
+(2, 'Gunung Raung', 'assets/upload/profile/Puncak-Sejati-Gunung-Raung-Wisata-Gunung-Banyuwangi.jpg', 'Gunung Ranti adalah gunung di Provinsi Jawa Timur, Indonesia. Gunung Ranti merupakan salah satu puncak di kawasan Pegunungan Ijen dengan ketinggian mencapai 2.601 Mdpl yang berada di perbatasan Kabupaten Bondowoso dan Kabupaten Banyuwangi. Gunung berbentuk kerucut ini terletak di sebelah baratdaya Gunung Merapi (Jawa Timur) dan Gunung Ijen.', '-7.587871', '110.450197', '2019-03-24 00:33:41', 1, 1);
 
 -- --------------------------------------------------------
 
