@@ -41,7 +41,17 @@ class Review_model extends CI_Model
 
     function get_by_spot($id)
     {
+        $this->datatables->select('review.id,review,review.date,rating,user.name,user.image');
+        $this->db->join('user', 'review.user_id = user.id');
         $this->db->where('spot_id',$id);
+        return $this->db->get($this->table)->result();
+    }
+    function get_by_spotUser($id,$user)
+    {
+        $this->datatables->select('review.id,review,review.date,rating,user.name,user.image');
+        $this->db->join('user', 'review.user_id = user.id');
+        $this->db->where('spot_id',$id);
+        $this->db->where('user_id',$user);
         return $this->db->get($this->table)->result();
     }
     

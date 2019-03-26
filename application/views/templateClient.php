@@ -19,6 +19,15 @@ http://www.templatemo.com/tm-511-journey
     <link rel="stylesheet" type="text/css" href= "<?= base_url()?>assets/user/slick/slick-theme.css"/>
     <link rel="stylesheet" href= "<?= base_url()?>assets/user/css/templatemo-style.css">                                   <!-- Templatemo style -->
 
+    <!-- load JS files -->
+    <script src= "<?= base_url()?>assets/user/js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
+    <script src= "<?= base_url()?>assets/user/js/popper.min.js"></script>                    <!-- https://popper.js.org/ -->       
+    <script src= "<?= base_url()?>assets/user/js/bootstrap.min.js"></script>                 <!-- https://getbootstrap.com/ -->
+    <script src= "<?= base_url()?>assets/user/js/datepicker.min.js"></script>                <!-- https://github.com/qodesmith/datepicker -->
+    <script src= "<?= base_url()?>assets/user/js/jquery.singlePageNav.min.js"></script>      <!-- Single Page Nav (https://github.com/ChrisWojcik/single-page-nav) -->
+    <script src= "<?= base_url()?>assets/user/slick/slick.min.js"></script>                  <!-- http://kenwheeler.github.io/slick/ -->
+    <script src= "<?= base_url()?>assets/user/js/jquery.scrollTo.min.js"></script>           <!-- https://github.com/flesler/jquery.scrollTo -->
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
             <!--[if lt IE 9]>
@@ -34,7 +43,7 @@ http://www.templatemo.com/tm-511-journey
                 <div class="container">
                     <div class="row">
                         <nav class="navbar navbar-expand-lg narbar-light">
-                            <a class="navbar-brand mr-auto" href="#">
+                            <a class="navbar-brand mr-auto" href="<?= base_url()?>">
                                 <img src= "<?= base_url()?>assets/user/img/logo.png" alt="Site logo">
                                 Ayo Banyuwangi
                             </a>
@@ -44,7 +53,7 @@ http://www.templatemo.com/tm-511-journey
                             <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
                                 <ul class="navbar-nav ml-auto">
                                   <li class="nav-item">
-                                    <a class="nav-link active" href="#top">Home <span class="sr-only">(current)</span></a>
+                                    <a class="nav-link active" href="<?= base_url()?>product">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#tm-section-2">Top Destinations</a>
@@ -69,107 +78,18 @@ http://www.templatemo.com/tm-511-journey
             </footer>
         </div>
     </div> <!-- .main-content -->
-        <?php $tmp = $listMaps; ?>
-    <!-- load JS files -->
-    <script src= "<?= base_url()?>assets/user/js/jquery-1.11.3.min.js"></script>             <!-- jQuery (https://jquery.com/download/) -->
-    <script src= "<?= base_url()?>assets/user/js/popper.min.js"></script>                    <!-- https://popper.js.org/ -->       
-    <script src= "<?= base_url()?>assets/user/js/bootstrap.min.js"></script>                 <!-- https://getbootstrap.com/ -->
-    <script src= "<?= base_url()?>assets/user/js/datepicker.min.js"></script>                <!-- https://github.com/qodesmith/datepicker -->
-    <script src= "<?= base_url()?>assets/user/js/jquery.singlePageNav.min.js"></script>      <!-- Single Page Nav (https://github.com/ChrisWojcik/single-page-nav) -->
-    <script src= "<?= base_url()?>assets/user/slick/slick.min.js"></script>                  <!-- http://kenwheeler.github.io/slick/ -->
-    <script src= "<?= base_url()?>assets/user/js/jquery.scrollTo.min.js"></script>           <!-- https://github.com/flesler/jquery.scrollTo -->
+
     <script> 
-        /* Google Maps
-        ------------------------------------------------*/
-        var mapsList = JSON.parse('<?php echo $listMaps ?>');
         
-        var map = '';
-        var center;
-
-        function initialize() {
-            var marker, i
-
-            var mapOptions = {
-                zoom: 16,
-                center: new google.maps.LatLng(-8.20731141166983,114.36764512289437),
-                scrollwheel: false,
-            };
-
-            map = new google.maps.Map(document.getElementById('google-map'),  mapOptions);
-
-            google.maps.event.addDomListener(map, 'idle', function() {
-                calculateCenter();
-            });
-
-            google.maps.event.addDomListener(window, 'resize', function() {
-                map.setCenter(center);
-            });
-            setMarkers(map,mapsList);
-
-            function setMarkers(map,locations){
-                for (i = 0; i < locations.length; i++){  
-                    var description = locations[i]['description']
-                    var image = locations[i]['image']
-                    var latitude = locations[i]['latitude']
-                    var longitude =  locations[i]['longitude']
-                    var name =  locations[i]['name']
-                    var type =  locations[i]['type']
-
-                    latlngset = new google.maps.LatLng(latitude, longitude);
-
-                    var marker = new google.maps.Marker({  
-                        map: map, title: name , position: latlngset  
-                    });
-                    map.setCenter(marker.getPosition())
-
-
-                    var content = '<div class="container-fluid">'+
-                                '<div class="row">'+
-                                '<div class="col-md-12">'+
-                                '<h3 class="text-center">'+name+'</h3>'+
-                                '<hr>'+
-                                '<div class="row">'+
-                                '<div class="col-md-6">'+
-                                '<img src="'+image+'" class="img-fluid img-thumbnail" alt="'+name+'" style="width: 100%;height: auto;">'+
-                                '</div>'+
-                                '<div class="col-md-6">'+
-                                '<p>'+description+'</p>'+
-                                '</div>'+
-                                '</div>'+
-                                '<hr>'+
-                                '<h6>'+
-                                'Detail : <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+name+'</a>'+
-                                '</h6>'+
-                                '</div>'+
-                                '</div>'+
-                                '</div>';
-
-                    var infowindow = new google.maps.InfoWindow()
-
-                    google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-                        return function() {
-                            infowindow.setContent(content);
-                            infowindow.open(map,marker);
-                        };
-                    })(marker,content,infowindow)); 
-                }
-            }
-        }
-
-        function calculateCenter() {
-            center = map.getCenter();
-        }
-
-        function loadGoogleMap(){
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDVWt4rJfibfsEDvcuaChUaZRS5NXey1Cs&v=3.exp&sensor=false&' + 'callback=initialize';
-            document.body.appendChild(script);
-        } 
-
         /* DOM is ready
         ------------------------------------------------*/
         $(function(){
+            function loadGoogleMap(){
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDVWt4rJfibfsEDvcuaChUaZRS5NXey1Cs&v=3.exp&sensor=false&' + 'callback=initialize';
+                document.body.appendChild(script);
+            } 
 
             // Change top navbar on scroll
             $(window).on("scroll", function() {

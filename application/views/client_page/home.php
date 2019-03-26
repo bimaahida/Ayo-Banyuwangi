@@ -98,17 +98,17 @@
                             <img src= "<?= base_url().$keySpot['image']?>" alt="<?= $keySpot['name']?>" class="img-fluid tm-recommended-img" style="height: 200px;">
                             <div class="tm-recommended-description-box">
                                 <h3 class="tm-recommended-title"><?= $keySpot['name']?></h3>
-                                <p class="tm-text-highlight"><?= $keySpot['latitude']?>.' , '.<?= $keySpot['longitude']?> </p>
+                                <p class="tm-text-highlight"><?= $keySpot['latitude']?> , <?= $keySpot['longitude']?> </p>
                                 <p class="tm-text-gray"><?= $keySpot['description']?></p>   
                             </div>
-                            <a href="#" class="tm-recommended-price-box">
+                            <a href="client/detail/<?= $keySpot['id' ]?>" class="tm-recommended-price-box">
                                 <p class="tm-recommended-price">✩<?=$keySpot['reting']?></p>
                                 <p class="tm-recommended-price-link">Go Destination</p>
                             </a>                        
                         </div>
                     <?php } ?>
                 </div>                        
-                <a href="#" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
+                <a href="" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
             </div>
         <?php $i++;} ?>
         <!-- tab-pane -->
@@ -118,3 +118,87 @@
 <div class="tm-container-outer tm-position-relative" id="tm-section-4">
     <div id="google-map"></div>
 </div> <!-- .tm-container-outer -->
+<?php $tmp = $listMaps; ?>
+<script>
+    /* Google Maps------------------------------------------------*/
+    var mapsList = JSON.parse('<?php echo $listMaps ?>');
+    
+    var map = '';
+    var center;
+
+    function initialize() {
+        var marker, i
+
+        var mapOptions = {
+            zoom: 16,
+            center: new google.maps.LatLng(-8.20731141166983,114.36764512289437),
+            scrollwheel: false,
+        };
+
+        map = new google.maps.Map(document.getElementById('google-map'),  mapOptions);
+
+        google.maps.event.addDomListener(map, 'idle', function() {
+            calculateCenter();
+        });
+
+        google.maps.event.addDomListener(window, 'resize', function() {
+            map.setCenter(center);
+        });
+        setMarkers(map,mapsList);
+
+        function setMarkers(map,locations){
+            for (i = 0; i < locations.length; i++){  
+                var description = locations[i]['description']
+                var image = locations[i]['image']
+                var latitude = locations[i]['latitude']
+                var longitude =  locations[i]['longitude']
+                var name =  locations[i]['name']
+                var type =  locations[i]['type']
+                var id =  locations[i]['id']
+
+
+                latlngset = new google.maps.LatLng(latitude, longitude);
+
+                var marker = new google.maps.Marker({  
+                    map: map, title: name , position: latlngset  
+                });
+                map.setCenter(marker.getPosition())
+
+
+                var content = '<div class="container-fluid">'+
+                            '<div class="row">'+
+                            '<div class="col-md-12">'+
+                            '<h3 class="text-center">'+name+'</h3>'+
+                            '<hr>'+
+                            '<div class="row">'+
+                            '<div class="col-md-6">'+
+                            '<img src="'+image+'" class="img-fluid img-thumbnail" alt="'+name+'" style="width: 100%;height: auto;">'+
+                            '</div>'+
+                            '<div class="col-md-6">'+
+                            '<p>'+description+'</p>'+
+                            '</div>'+
+                            '</div>'+
+                            '<hr>'+
+                            '<h6>'+
+                            'Detail : <a href="client/detail/'+id+'">'+name+'</a>'+
+                            '</h6>'+
+                            '</div>'+
+                            '</div>'+
+                            '</div>';
+
+                var infowindow = new google.maps.InfoWindow()
+
+                google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+                    return function() {
+                        infowindow.setContent(content);
+                        infowindow.open(map,marker);
+                    };
+                })(marker,content,infowindow)); 
+            }
+        }
+    }
+
+    function calculateCenter() {
+        center = map.getCenter();
+    }
+</script>

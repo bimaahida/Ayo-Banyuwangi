@@ -37,6 +37,10 @@
     </div>
 </div>
 <script type="text/javascript">
+    // var url = window.location.href
+    // url = url.split('/')
+    // url = url[0]+'//'+url[2]+'/'+url[3]+'/';
+
     $(document).ready(function() {
         $.fn.dataTableExt.oApi.fnPagingInfo = function(oSettings)
         {

@@ -38,6 +38,11 @@ class Gallery_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+    function get_by_spot($id)
+    {
+        $this->db->where('spot_id', $id);
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

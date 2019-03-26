@@ -11,6 +11,8 @@ class Client extends CI_Controller
         $this->load->model('Type_spot_model');
         $this->load->model('Spot_model');
         $this->load->model('Review_model');
+        $this->load->model('Gallery_model');
+        $this->load->model('Product_model');
         $this->load->library('form_validation');        
 	    $this->load->library('datatables');
     }
@@ -25,14 +27,17 @@ class Client extends CI_Controller
 
         foreach ($spot as $keySpot) {
             $tmpType = $this->Type_spot_model->get_by_id($keySpot->type_spot_id);
+            $tmpImage = $this->Gallery_model->get_by_spot($keySpot->id);
             $tmpArray = array(
+                'id' => $keySpot->id,
                 'name' => $keySpot->name, 
-                'image' => $keySpot->image, 
+                'image' => $tmpImage[0]->image, 
                 'description' => $keySpot->description, 
                 'latitude' => $keySpot->latitude, 
                 'longitude' => $keySpot->longitude, 
                 'type' => $tmpType->name, 
             );
+            // var_dump($tmpImage);
             array_push($spotList,$tmpArray);
         }
         foreach ($type_spot as $keyType) {
@@ -50,10 +55,40 @@ class Client extends CI_Controller
 
         $data = array(
             'type_spot' => $returnArray,
+            'listMaps' => json_encode($spotList),
         );
         
-        $this->render['listMaps']= json_encode($spotList);
         $this->render['content']= $this->load->view('client_page/home', $data, TRUE);
+        $this->load->view('templateClient', $this->render);
+    }
+    public function detail($id){
+        $ses = $this->session->userdata('logged_in');
+        $tmpSpot = $this->Spot_model->get_by_id($id);
+        $review = $this->Review_model->get_by_spot($tmpSpot->id);
+        if(!empty($ses)){
+            $dataReview = count($this->Review_model->get_by_spotUser($tmpSpot->id,$ses['id']));
+            $review_user = $this->Review_model->get_by_spotUser($tmpSpot->id,$ses['id'])[$dataReview -1 ]->rating;
+        }else{
+            $review_user = 0;
+        }
+        $tmp = 0;
+
+        foreach ($review as $key) {
+            $tmp += $key->rating;
+        }
+
+        $data = array(
+            'spot' => $tmpSpot,
+            'image' => $this->Gallery_model->get_by_spot($tmpSpot->id),
+            'type' => $this->Type_spot_model->get_by_id($tmpSpot->type_spot_id),
+            'rating' => $tmp/count($review),
+            'review' => $review_user,
+            'review_all' =>$this->Review_model->get_by_spot($tmpSpot->id),
+            'product' => $this->Product_model->get_by_spot($tmpSpot->id),
+            'root_url' => base_url(),
+            'action' => site_url('review/create_action')
+        );
+        $this->render['content']= $this->load->view('client_page/detail_location', $data, TRUE);
         $this->load->view('templateClient', $this->render);
     }
     private function getTopSpotByReview($id){
@@ -62,6 +97,7 @@ class Client extends CI_Controller
         foreach ($dateSpot as $keySpot) {
             $totalReting = 0;
             $dataReview = $this->Review_model->get_by_spot($keySpot->id);
+            $tmpImage = $this->Gallery_model->get_by_spot($keySpot->id);
             foreach ($dataReview as $keyReview) {
                 $totalReting += $keyReview->rating;
             }
@@ -73,7 +109,7 @@ class Client extends CI_Controller
             $tmp = array(
                 'id' => $keySpot->id, 
                 'name' => $keySpot->name, 
-                'image' => $keySpot->image, 
+                'image' => $tmpImage[0]->image, 
                 'description' => $keySpot->description, 
                 'latitude' => $keySpot->latitude, 
                 'longitude' => $keySpot->longitude,

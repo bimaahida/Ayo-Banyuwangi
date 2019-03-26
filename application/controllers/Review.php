@@ -59,23 +59,23 @@ class Review extends CI_Controller
     
     public function create_action() 
     {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
+        $ses = $this->session->userdata('logged_in');
+        if(!empty($ses)){
             $data = array(
-		'review' => $this->input->post('review',TRUE),
-		'date' => $this->input->post('date',TRUE),
-		'rating' => $this->input->post('rating',TRUE),
-		'spot_id' => $this->input->post('spot_id',TRUE),
-		'user_id' => $this->input->post('user_id',TRUE),
-	    );
-
+                'review' => $this->input->post('review',TRUE),
+                'date' => date("Y-m-d H:i:s"),
+                'rating' => $this->input->post('rating',TRUE),
+                'spot_id' => $this->input->post('spot_id',TRUE),
+                'user_id' => $ses['id'],
+            );
+    
             $this->Review_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('Client/detail/'.$ses['id']));
+        }else{
+            $this->session->set_flashdata('message', 'Requires login access for this action');
             redirect(site_url('review'));
         }
+        
     }
     
     public function update($id) 
