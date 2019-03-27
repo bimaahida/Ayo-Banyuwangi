@@ -76,12 +76,17 @@ class Client extends CI_Controller
         foreach ($review as $key) {
             $tmp += $key->rating;
         }
+        if(count($review) > 0){
+            $tmp = $tmp/count($review);
+        }else{
+            $tmp = 0;
+        }
 
         $data = array(
             'spot' => $tmpSpot,
             'image' => $this->Gallery_model->get_by_spot($tmpSpot->id),
             'type' => $this->Type_spot_model->get_by_id($tmpSpot->type_spot_id),
-            'rating' => $tmp/count($review),
+            'rating' => $tmp,
             'review' => $review_user,
             'review_all' =>$this->Review_model->get_by_spot($tmpSpot->id),
             'product' => $this->Product_model->get_by_spot($tmpSpot->id),

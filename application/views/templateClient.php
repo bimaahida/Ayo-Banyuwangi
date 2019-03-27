@@ -87,7 +87,7 @@ http://www.templatemo.com/tm-511-journey
             function loadGoogleMap(){
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
-                script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDVWt4rJfibfsEDvcuaChUaZRS5NXey1Cs&v=3.exp&sensor=false&' + 'callback=initialize';
+                script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCoti5iRsw319mDc9NxFsJAMWGTJRUSDkI&sensor=false&' + 'callback=initialize';
                 document.body.appendChild(script);
             } 
 

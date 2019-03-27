@@ -68,7 +68,14 @@
 						Maps
 					</h4>
 					<div class="tm-container-outer tm-position-relative" id="tm-section-4">
-						<div id="google-map"></div>
+						<div class="row">
+							<div class="col-6">
+								<div id="google-map"></div>
+							</div>
+							<div class="col-6">
+								<div id="right-panel"></div>
+							</div>
+						</div>
 					</div> <!-- .tm-container-outer -->
 					<?php if(!empty($product)){ ?>
 						<hr>
@@ -204,8 +211,9 @@
         };
 
         map = new google.maps.Map(document.getElementById('google-map'),  mapOptions);
-
+		
 		directionsDisplay.setMap(map);
+		directionsDisplay.setPanel(document.getElementById('right-panel'));
 
         google.maps.event.addDomListener(map, 'idle', function() {
             calculateCenter();
