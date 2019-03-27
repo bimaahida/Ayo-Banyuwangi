@@ -17,10 +17,6 @@
             <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php echo $name; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Image <?php echo form_error('image') ?></label>
-            <input type="text" class="form-control" name="image" id="image" placeholder="Image" value="<?php echo $image; ?>" />
-        </div>
-	    <div class="form-group">
             <label for="description">Description <?php echo form_error('description') ?></label>
             <textarea class="form-control" rows="3" name="description" id="description" placeholder="Description"><?php echo $description; ?></textarea>
         </div>

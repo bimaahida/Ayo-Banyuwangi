@@ -46,7 +46,6 @@
                 <tr>
                     <th width="80px">No</th>
 		    <th>Name</th>
-		    <th>Image</th>
 		    <th>Description</th>
 		    <th>Latitude</th>
 		    <th>Longitude</th>
@@ -97,7 +96,7 @@
                         {
                             "data": "id",
                             "orderable": false
-                        },{"data": "name"},{"data": "image"},{"data": "description"},{"data": "latitude"},{"data": "longitude"},{"data": "date"},{"data": "type_spot_id"},{"data": "user_id"},
+                        },{"data": "name"},{"data": "description"},{"data": "latitude"},{"data": "longitude"},{"data": "date"},{"data": "type_spot_id"},{"data": "user_id"},
                         {
                             "data" : "action",
                             "orderable": false,

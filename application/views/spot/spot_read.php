@@ -13,7 +13,6 @@
         <h2 style="margin-top:0px">Spot Read</h2>
         <table class="table">
 	    <tr><td>Name</td><td><?php echo $name; ?></td></tr>
-	    <tr><td>Image</td><td><?php echo $image; ?></td></tr>
 	    <tr><td>Description</td><td><?php echo $description; ?></td></tr>
 	    <tr><td>Latitude</td><td><?php echo $latitude; ?></td></tr>
 	    <tr><td>Longitude</td><td><?php echo $longitude; ?></td></tr>
