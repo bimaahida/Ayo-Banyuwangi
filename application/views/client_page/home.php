@@ -13,7 +13,7 @@
                 </div>  <!-- col-xs-12 -->                      
             </div> <!-- row -->
             <div class="row tm-banner-row" id="tm-section-search">
-                <form action="index.html" method="get" class="tm-search-form tm-section-pad-2">
+                <form action="<?= base_url()?>client/search" method="get" class="tm-search-form tm-section-pad-2">
                     <div class="form-row tm-search-form-row">                                
                         <div class="form-group tm-form-group tm-form-group-pad tm-form-group-2">
                             <label for="inputCity">Name Your Destination</label>
@@ -39,9 +39,8 @@
                             <label for="btnSubmit">&nbsp;</label>
                             <a href="#" class="btn btn-primary tm-btn tm-btn-search text-uppercase"  id="btnSubmitType">Check Destination</a>
                         </div>
-                    </div>                         
-                </form>                             
-
+                    </div>
+                    </form>                                                      
             </div> <!-- row -->
             <div class="tm-banner-overlay"></div>
         </div>  <!-- .container -->                   
@@ -98,6 +97,7 @@
                             <img src= "<?= base_url().$keySpot['image']?>" alt="<?= $keySpot['name']?>" class="img-fluid tm-recommended-img" style="height: 200px;">
                             <div class="tm-recommended-description-box">
                                 <h3 class="tm-recommended-title"><?= $keySpot['name']?></h3>
+                                <h6 class="tm-text-gray"><?= $key['status']?></h6>   
                                 <p class="tm-text-highlight"><?= $keySpot['latitude']?> , <?= $keySpot['longitude']?> </p>
                                 <p class="tm-text-gray"><?= $keySpot['description']?></p>   
                             </div>
@@ -108,7 +108,7 @@
                         </div>
                     <?php } ?>
                 </div>                        
-                <a href="" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
+                <a href="<?= base_url()?>client/more/<?=$key['id']?>" class="text-uppercase btn-primary tm-btn mx-auto tm-d-table">Show More Places</a>
             </div>
         <?php $i++;} ?>
         <!-- tab-pane -->
@@ -130,7 +130,7 @@
         var marker, i
 
         var mapOptions = {
-            zoom: 16,
+            zoom: 11,
             center: new google.maps.LatLng(-8.20731141166983,114.36764512289437),
             scrollwheel: false,
         };

@@ -67,7 +67,9 @@
 					<h4>
 						Maps
 					</h4>
-					<div class="tm-container-outer tm-position-relative" id="tm-section-4">
+					<a class="btn btn-primary" id="open_maps" target="_blank">Open Maps</a>
+					
+					<div class="tm-container-outer tm-position-relative pt-3" id="tm-section-4">
 						<div class="row">
 							<div class="col-6">
 								<div id="google-map"></div>
@@ -197,6 +199,8 @@
 	var map = '';
     var center;
 
+	document.getElementById("open_maps").href = "https://www.google.com/maps/dir/-7.9655683,112.6619038/-7.587871,110.450197/@-7.6504576,111.0373411,9z/data=!3m1!4b1";
+
     function initialize() {
 
 		var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -233,7 +237,12 @@
 				directionsService.route({
 					origin: myPos,
 					destination: destination,
-					travelMode: 'DRIVING'
+					travelMode: 'DRIVING',
+					drivingOptions: {
+						departureTime: new Date(Date.now()),
+						trafficModel: 'optimistic'
+					},
+					unitSystem: google.maps.UnitSystem.METRIC
 				}, function(response, status) {
 					if (status === 'OK') {
 						directionsDisplay.setDirections(response);
@@ -241,6 +250,7 @@
 						window.alert('Directions request failed due to ' + status);
 					}
 				});
+				// document.getElementById("open_maps").href = "https://www.google.com/maps/dir/"+myPos+"/"+destination+"/@"+myPos+",7.96z";
 			}
 
           })

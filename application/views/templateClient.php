@@ -56,13 +56,13 @@ http://www.templatemo.com/tm-511-journey
                                     <a class="nav-link active" href="<?= base_url()?>product">Home <span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#tm-section-2">Top Destinations</a>
+                                    <a class="nav-link" href="<?= base_url()?>#tm-section-2">Top Destinations</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#tm-section-3">Recommended Places</a>
+                                    <a class="nav-link" href="<?= base_url()?>#tm-section-3">Recommended Places</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#tm-section-4">Maps</a>
+                                    <a class="nav-link" href="<?= base_url()?>#tm-section-4">Maps</a>
                                 </li>
                             </ul>
                         </div>                            
