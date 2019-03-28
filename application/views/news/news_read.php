@@ -6,12 +6,12 @@
         <div class="content">
             <div class="author">
 
-        <h4 class="title"><?php echo $spot_id; ?><br />
+        <h4 class="title"><?php echo $spotName; ?><br />
                     <small>Spot</small>
                 </h4>
             </div>
             <p class="spot text-center">
-                <?php echo $spot_id; ?>
+                <?php echo $spotName; ?>
             </p>
 
             <hr>

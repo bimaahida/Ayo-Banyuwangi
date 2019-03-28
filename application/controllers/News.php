@@ -30,12 +30,13 @@ class News extends CI_Controller
         $row = $this->News_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'id' => $row->id,
-		'spot_id' => $row->spot_id,
+        'id' => $row->id,
+        'spotName' => $row->spotName,
+		// 'spot_id' => $row->spot_id,
 		'tanggal' => $row->tanggal,
 		'judul' => $row->judul,
         'keterangan' => $row->keterangan,
-        'spotName' => $row->spotName,
+        // 'spotName' => $row->spotName,
         );
         $this->render['content']= $this->load->view('news/news_read', $data, TRUE);
             $this->load->view('template', $this->render);
@@ -142,7 +143,7 @@ class News extends CI_Controller
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('spot_id', 'id spot', 'trim|required');
+	$this->form_validation->set_rules('spot_id', 'spot_id', 'trim|required');
 	$this->form_validation->set_rules('tanggal', 'tanggal', 'trim|required');
 	$this->form_validation->set_rules('judul', 'judul', 'trim|required');
 	$this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
