@@ -1,36 +1,46 @@
-<!doctype html>
-<html>
-    <head>
-        <title>harviacode.com - codeigniter crud generator</title>
-        <link rel="stylesheet" href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>"/>
-        <style>
-            body{
-                padding: 15px;
-            }
-        </style>
-    </head>
-    <body>
-        <h2 style="margin-top:0px">Type_spot <?php echo $button ?></h2>
-        <form action="<?php echo $action; ?>" method="post">
-	    <div class="form-group">
-            <label for="varchar">Name <?php echo form_error('name') ?></label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php echo $name; ?>" />
+<div class="col-lg-12 col-md-12">
+    <div class="card">
+        <div class="header">
+            <h4 class="title">Type Spot <?php echo $button ?></h4>
         </div>
-	    <div class="form-group">
-            <label for="varchar">Title <?php echo form_error('title') ?></label>
-            <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?php echo $title; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="varchar">Description <?php echo form_error('description') ?></label>
-            <input type="text" class="form-control" name="description" id="description" placeholder="Description" value="<?php echo $description; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="varchar">Image <?php echo form_error('image') ?></label>
-            <input type="text" class="form-control" name="image" id="image" placeholder="Image" value="<?php echo $image; ?>" />
-        </div>
+        <div class="content">
+            <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                        <label>Name</label>
+                            <input type="text" class="form-control border-input" placeholder="Name" name="name" id="name" value="<?php echo $name; ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                        <label>Title</label>
+                            <input type="text" class="form-control border-input" placeholder="Title" name="title" id="name" value="<?php echo $name; ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                        <label>Description</label>
+                            <input type="text" class="form-control border-input" placeholder="Description" name="description" id="name" value="<?php echo $name; ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input type="file" class="form-control border-input" accept="image/*" name="image" id="image">
+                        </div>
+                    </div>
 	    <input type="hidden" name="id" value="<?php echo $id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('type_spot') ?>" class="btn btn-default">Cancel</a>
 	</form>
-    </body>
-</html>
+    <input type="hidden" name="foto_lama" value="<?php echo $image; ?>">
+                <input type="hidden" name="id" value="<?php echo $id; ?>" />  
+                <div class="text-center">
+                    <button type="submit" class="btn btn-info btn-fill btn-wd"><?php echo $button ?></button>
+                </div>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -9,24 +9,23 @@
             <?php } ?>
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Type Spot List</h4>
-                    <p class="category">List Of Type Spot for Sale</p>
+                    <h4 class="title">Product List</h4>
+                    <p class="category">List Of Product for Sale</p>
                 </div>
+            
+            <div class="col-md-12 text-right">
+                <?php echo anchor(site_url('news/create'), 'Create', 'class="btn btn-primary"'); ?>
+	    </div>
 
-                <div class="col-md-12 text-right">
-                    <?php echo anchor(site_url('type_spot/create'), 'Create', 'class="btn btn-primary"'); ?>
-                </div>
-                
-
-                <div class="content table-responsive">
-                <table class="table table-bordered table-striped" id="mytable">
-                    <thead>
-                        <tr>
-            <th width="80px">No</th>
-		    <th>Name</th>
-		    <th>Title</th>
-		    <th>Description</th>
-		    <th>Image</th>
+        
+        <table class="table table-bordered table-striped" id="mytable">
+            <thead>
+                <tr>
+                    <th width="80px">No</th>
+		    <th>Spot</th>
+		    <th>Tanggal</th>
+		    <th>Judul</th>
+		    <th>Keterangan</th>
 		    <th width="200px">Action</th>
                 </tr>
             </thead>
@@ -71,12 +70,12 @@
                     },
                     processing: true,
                     serverSide: true,
-                    ajax: {"url": "type_spot/json", "type": "POST"},
+                    ajax: {"url": "news/json", "type": "POST"},
                     columns: [
                         {
                             "data": "id",
                             "orderable": false
-                        },{"data": "name"},{"data": "title"},{"data": "description"},{"data": "image"},
+                        },{"data": "spot_id"},{"data": "tanggal"},{"data": "judul"},{"data": "keterangan"},
                         {
                             "data" : "action",
                             "orderable": false,

@@ -15,7 +15,8 @@ class Type_spot extends CI_Controller
 
     public function index()
     {
-        $this->load->view('type_spot/type_spot_list');
+        $this->render['content']= $this->load->view('type_spot/type_spot_list', array(), TRUE);
+        $this->load->view('template', $this->render);
     } 
     
     public function json() {
@@ -62,22 +63,38 @@ class Type_spot extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
-            $data = array(
-		'name' => $this->input->post('name',TRUE),
-		'title' => $this->input->post('title',TRUE),
-		'description' => $this->input->post('description',TRUE),
-		'image' => $this->input->post('image',TRUE),
-	    );
+
+            $config['upload_path']          = './assets/upload/type_spot/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 1000000000;
+            $config['max_width']            = 10240;
+            $config['max_height']           = 7680;
+            
+            $this->load->library('upload', $config);
+
+            if ( !$this->upload->do_upload('image')){
+                $error = array('error' => $this->upload->display_errors());
+                var_dump($error);
+            }else{
+                $file = 'assets/upload/type_spot/'.$this->upload->data('file_name');
+                $data = array(
+                    'name' => $this->input->post('name',TRUE),
+                    'title' => $this->input->post('title',TRUE),
+                    'description' => $this->input->post('description',TRUE),
+                    'image' => $file,
+                );
 
             $this->Type_spot_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('type_spot'));
         }
     }
+}
     
-    public function update($id) 
+    public function update($id)
     {
         $row = $this->Type_spot_model->get_by_id($id);
+        $dataSelect = $this->spot_model->get_by_idUser($this->session->userdata('logged_in')['id']);
 
         if ($row) {
             $data = array(
@@ -89,7 +106,8 @@ class Type_spot extends CI_Controller
 		'description' => set_value('description', $row->description),
 		'image' => set_value('image', $row->image),
 	    );
-            $this->load->view('type_spot/type_spot_form', $data);
+        $this->render['content']= $this->load->view('type_spot/type_spot_form', $data, TRUE);
+        $this->load->view('template', $this->render);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('type_spot'));
@@ -100,17 +118,38 @@ class Type_spot extends CI_Controller
     {
         $this->_rules();
 
+        $config['upload_path']          = './assets/upload/type_spot/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 1000000000;
+        $config['max_width']            = 10240;
+        $config['max_height']           = 7680;
+        
+        $this->load->library('upload', $config);
+
         if ($this->form_validation->run() == FALSE) {
             $this->update($this->input->post('id', TRUE));
         } else {
-            $data = array(
-		'name' => $this->input->post('name',TRUE),
-		'title' => $this->input->post('title',TRUE),
-		'description' => $this->input->post('description',TRUE),
-		'image' => $this->input->post('image',TRUE),
-	    );
+            $foto_lama = $this->input->post('foto_lama',TRUE);
+            if ( !$this->upload->do_upload('image')){
+                $data = array(
+                    'name' => $this->input->post('name',TRUE),
+                    'title' => $this->input->post('title',TRUE),
+                    'description' => $this->input->post('description',TRUE),
+                    'image' => $this->input->post('image',TRUE),
+                );
+            }else{
+                @unlink($foto_lama);
+                $file = 'assets/upload/type_spot/'.$this->upload->data('file_name');
+                $data = array(
+                    'name' => $this->input->post('name',TRUE),
+                    'title' => $this->input->post('title',TRUE),
+                    'description' => $this->input->post('description',TRUE),
+                    'image' => $file,
+                );
+                var_dump($data);
+            }
 
-            $this->Type_spot_model->update($this->input->post('id', TRUE), $data);
+            $this->Product_model->update($this->input->post('id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('type_spot'));
         }
