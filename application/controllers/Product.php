@@ -73,8 +73,6 @@ class Product extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
-            $password = sha1($this->input->post('password',TRUE));
-            $re_password = sha1($this->input->post('re_password',TRUE));
     
             $config['upload_path']          = './assets/upload/product/';
             $config['allowed_types']        = 'gif|jpg|png|jpeg';
