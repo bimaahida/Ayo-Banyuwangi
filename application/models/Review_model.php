@@ -17,10 +17,12 @@ class Review_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id,review,date,rating,spot_id,user_id');
+        $this->datatables->select('id,review,date,rating,spot.name as spot_id, user.name as user_id');
         $this->datatables->from('review');
         //add this line for join
         //$this->datatables->join('table2', 'review.field = table2.field');
+        $this->datatables->join('spot', 'review.spot_id = spot.id');
+        $this->datatables->join('user', 'review.user_id = user.id');
         $this->datatables->add_column('action', anchor(site_url('review/read/$1'),'Read')." | ".anchor(site_url('review/update/$1'),'Update')." | ".anchor(site_url('review/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
         return $this->datatables->generate();
     }
@@ -35,22 +37,24 @@ class Review_model extends CI_Model
     // get data by id
     function get_by_id($id)
     {
+        $this->datatables->select('review.id,review,review.date,rating,spot.name as spot_id,user.name as user_id,spot_id');
         $this->db->where($this->id, $id);
+        $this->db->join('spot', 'review.spot_id = spot.id');
+        $this->db->join('user', 'review.user_id = user.id');
         return $this->db->get($this->table)->row();
     }
 
     function get_by_spot($id)
     {
-        $this->datatables->select('review.id,review,review.date,rating,user.name,user.image');
-        $this->db->join('user', 'review.user_id = user.id');
+        // $this->datatables->select('review.id,review,review.date,rating,spot.name as spot_id,user.image');
+        // $this->db->join('spot', 'review.spot_id = spot.id');
         $this->db->where('spot_id',$id);
         return $this->db->get($this->table)->result();
     }
-    function get_by_spotUser($id,$user)
+    function get_by_user($id,$user)
     {
-        $this->datatables->select('review.id,review,review.date,rating,user.name,user.image');
-        $this->db->join('user', 'review.user_id = user.id');
-        $this->db->where('spot_id',$id);
+        // $this->datatables->select('review.id,review,review.date,rating,user.name as user_id,user.image');
+        // $this->db->join('user', 'review.user_id = user.id');
         $this->db->where('user_id',$user);
         return $this->db->get($this->table)->result();
     }

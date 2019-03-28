@@ -9,13 +9,16 @@ class Review extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Review_model');
+        $this->load->model('spot_model');
+        $this->load->model('user_model');
         $this->load->library('form_validation');        
 	$this->load->library('datatables');
     }
 
     public function index()
     {
-        $this->load->view('review/review_list');
+        $this->render['content']= $this->load->view('review/review_list', array(), TRUE);
+        $this->load->view('template', $this->render);
     } 
     
     public function json() {
